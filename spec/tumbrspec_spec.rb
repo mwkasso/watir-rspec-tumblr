@@ -13,7 +13,14 @@ describe "Tumblr" do
   end
  
   it "should do this" do
-    
+    @browser.link(href: "/new/text?redirect_to=%2Fdashboard").click
+    @browser.div(class: "editor-plaintext").send_keys "This is a test"
+    @browser.div(class: "editor-richtext").send_keys "This is a test"
+    @browser.button(class:"create_post_button").click
+    @browser.button(class:"create_post_button").wait_while_present
+    @browser.div(class:"post_title").wait_until_present
+    @browser.goto "http://thebitchybelievergentlemenworld.tumblr.com/"
+    expect(@browser.h2(class:"title").text).to eq("This is a test")
   end
  
  
