@@ -12,7 +12,7 @@ describe "Tumblr" do
     @browser.button(id: "signup_forms_submit").click
   end
  
-  it "should do this" do
+  it "Should create a text post" do
     @browser.link(href: "/new/text?redirect_to=%2Fdashboard").click
     @browser.div(class: "editor-plaintext").send_keys "This is a test"
     @browser.div(class: "editor-richtext").send_keys "This is a test"
@@ -22,8 +22,7 @@ describe "Tumblr" do
     @browser.goto "http://thebitchybelievergentlemenworld.tumblr.com/"
     expect(@browser.h2(class:"title").text).to eq("This is a test")
   end
- 
- 
+
   after :all do
     @browser.quit
   end
